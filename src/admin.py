@@ -19,8 +19,6 @@ def resource_path(relative_path):  # To check whether running locally or through
     return os.path.join(base_path, relative_path)
 
 
-os.mkdir("./IDcard")
-
 init()
 
 pathToJSON = "./data.json"
@@ -36,6 +34,9 @@ if not exists(pathToJSON):
     f = open(pathToJSON, "a")
     f.write("{\"members\":[],\"member-count\": 0}")
     f.close()
+
+if not exists("./IDcard"):
+    os.mkdir("./IDcard")
 
 
 def read_json(filename=pathToJSON):
