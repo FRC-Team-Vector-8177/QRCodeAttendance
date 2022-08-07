@@ -1,15 +1,36 @@
 import json
 import qrcode
 import io
+import sys
+import os
+from PIL import Image, ImageFont, ImageDraw
 from colorama import init
 from os.path import exists
 from datetime import date
+
+
+def resource_path(relative_path):  # To check whether running locally or through EXE
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath("./cardsrc")
+
+    return os.path.join(base_path, relative_path)
+
+
+os.mkdir("./IDcard")
 
 init()
 
 pathToJSON = "./data.json"
 
+cardBGx, cardBGy = (571, 904)
+cardBG = Image.open(resource_path('cardBG.png'))
+cardFont = ImageFont.truetype(resource_path('Montserrat.ttf'), 45)
+
 dateString = date.today().strftime("%m-%d-%Y")
+
 
 if not exists(pathToJSON):
     f = open(pathToJSON, "a")
@@ -53,9 +74,27 @@ def remove_member(name, filename=pathToJSON):
         file.close()
 
 
-def print_QR_code(data):
+def print_QR_code(data, name):
+    # Generate QR Code
     qr = qrcode.QRCode()
     qr.add_data(data)
+    qr.make(fit=True)
+
+    # Generate ID card
+    QRimg = qr.make_image(fill_color="black", back_color="white")
+    QRimg = QRimg.resize((450, 450))
+    cardBG.paste(QRimg, (61, 60))
+    draw = ImageDraw.Draw(cardBG)
+    nameArr = name.split(" ")
+    current_h, pad = 525, 10
+    for line in nameArr:
+        w, h = cardFont.getsize(line)
+        draw.text(((cardBGx-w)/2, current_h), line,
+                  font=cardFont, fill="black")
+        current_h += h + pad
+    cardBG.save("./IDcard/" + str(data) + name.replace(" ", "_") + ".png")
+
+    # Print QR To Console
     f = io.StringIO()
     qr.print_ascii(out=f)
     f.seek(0)
@@ -87,7 +126,7 @@ while True:
         increment_member_count(1)
         print("Successfully added " + name +
               " as ID #" + str(idnum) + ". \nQR code:")
-        print_QR_code(idnum)
+        print_QR_code(idnum, name)
     elif task == "delete":
         name = input("Please type the member's full name")
         remove_member(name)
@@ -97,7 +136,7 @@ while True:
         memberJSON = read_json()
         for member in memberJSON["members"]:
             if member["name"] == name:
-                print_QR_code(member["id"])
+                print_QR_code(member["id"], member["name"])
     elif task == "quit":
         break
     else:

@@ -1,4 +1,4 @@
-# QR Code Attendance
+# QR Code Attendance (Vector Edition)
 QR Code Attendance is a Python-based program that allows you to log attendance by showing a QR code to your webcam. It's logged in a generated JSON file.
 
 # Installation

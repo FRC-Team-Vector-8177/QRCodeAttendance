@@ -1,4 +1,4 @@
-('D:\\Code\\Python\\QRCodeSignIn\\build\\camera\\PYZ-00.pyz',
+('D:\\Code\\Python\\QRCodeAttendanceVector\\build\\camera\\PYZ-00.pyz',
  [('multiprocessing.popen_spawn_posix',
    'C:\\Users\\murad\\AppData\\Local\\Programs\\Python\\Python310\\lib\\multiprocessing\\popen_spawn_posix.py',
    'PYMODULE'),
