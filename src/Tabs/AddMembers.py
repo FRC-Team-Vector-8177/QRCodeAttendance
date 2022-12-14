@@ -60,7 +60,7 @@ class AddMembersTab(customtkinter.CTkFrame):
         submit_button.pack(pady=20, padx=0)
 
         qr_placeholder = PIL.Image.open(
-            resource_path("assets/placeholder.png"))
+            resource_path("placeholder.png", './assets/'))
         qr_code = customtkinter.CTkImage(light_image=qr_placeholder,
                                          dark_image=qr_placeholder,
                                          size=(250, 250))
@@ -77,7 +77,7 @@ class AddMembersTab(customtkinter.CTkFrame):
         self.info_display.configure(state='disable')
 
     def submit_user(self, event=None):
-        # Get Full Name and Graduating Year
+        # Get full name & student ID
         full_name = str(self.full_name_var.get())
         student_id = str(self.student_id_var.get())
 

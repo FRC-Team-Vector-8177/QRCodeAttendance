@@ -6,12 +6,13 @@ from os.path import exists
 from PIL import Image, ImageFont, ImageDraw
 
 
-def resource_path(relative_path):  # To check whether running locally or through EXE
+# To check whether running locally or through EXE
+def resource_path(relative_path, abspath):
     try:
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath(".")
+        base_path = os.path.abspath(abspath)
 
     return os.path.join(base_path, relative_path)
 
@@ -21,9 +22,9 @@ def generate_ID_card(name, data):
         os.mkdir("./IDcard")
 
     cardBGx, cardBGy = (571, 904)
-    cardBG = Image.open(resource_path('assets/card/cardBG.png'))
+    cardBG = Image.open(resource_path('cardBG.png', './assets/card/'))
     cardFont = ImageFont.truetype(
-        resource_path('assets/card/Montserrat.ttf'), 45)
+        resource_path('Montserrat.ttf', './assets/card/'), 45)
 
     qr = qrcode.QRCode()
     qr.add_data(data)

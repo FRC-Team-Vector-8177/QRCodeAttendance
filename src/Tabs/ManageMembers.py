@@ -47,7 +47,7 @@ class ManageMembersTab(customtkinter.CTkFrame):
         self.tabcontrol.configure(command=self.reload_member_list)
 
         qr_placeholder = PIL.Image.open(
-            resource_path("assets/placeholder.png"))
+            resource_path("placeholder.png", './assets/'))
         qr_code = customtkinter.CTkImage(light_image=qr_placeholder,
                                          dark_image=qr_placeholder,
                                          size=(250, 250))

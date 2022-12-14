@@ -11,7 +11,7 @@ block_cipher = None
 
 a = Analysis(['Main.py'],
              pathex=['.', "../venv/Lib/site-packages"],
-             binaries=[('./Scanner/log_in.mp3', '.'), ('./Scanner/log_out.mp3', '.'), ('./Tools/cardsrc/cardBG.png', '.'), ('./Tools/cardsrc/Montserrat.ttf', '.'), ('./vector.png', '.')],
+             binaries=[('./Scanner/log_in.mp3', '.'), ('./Scanner/log_out.mp3', '.'), ('./assets/card/cardBG.png', '.'), ('./assets/card/Montserrat.ttf', '.'), ('./assets/placeholder.png', '.')],
              datas=[('../venv/Lib/site-packages/customtkinter', 'customtkinter/')],
              hiddenimports=["playsound==1.2.2"],
              hookspath=[],
