@@ -12,6 +12,7 @@ from Tabs.Other import OtherTab
 
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
+customtkinter.deactivate_automatic_dpi_awareness()
 
 
 class Main:
@@ -25,7 +26,9 @@ class Main:
         root.geometry(str(CONSTANT.window_x)+"x"+str(CONSTANT.window_y))
         root.resizable(False, False)
 
-        tab_control = customtkinter.CTkTabview(root)
+        tab_control = customtkinter.CTkTabview(root,
+                                               segmented_button_selected_color="#db6900",
+                                               segmented_button_selected_hover_color="#b85900")
 
         manage_members = tab_control.add("Manage Members")
         add_members = tab_control.add("Add Members")

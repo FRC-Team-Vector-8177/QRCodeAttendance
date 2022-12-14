@@ -11,17 +11,19 @@ def resource_path(relative_path):  # To check whether running locally or through
         # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
-        base_path = os.path.abspath("./Tools/cardsrc")
+        base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
+
 
 def generate_ID_card(name, data):
     if not exists("./IDcard"):
         os.mkdir("./IDcard")
 
     cardBGx, cardBGy = (571, 904)
-    cardBG = Image.open(resource_path('cardBG.png'))
-    cardFont = ImageFont.truetype(resource_path('Montserrat.ttf'), 45)
+    cardBG = Image.open(resource_path('assets/card/cardBG.png'))
+    cardFont = ImageFont.truetype(
+        resource_path('assets/card/Montserrat.ttf'), 45)
 
     qr = qrcode.QRCode()
     qr.add_data(data)

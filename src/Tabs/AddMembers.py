@@ -3,7 +3,7 @@ import qrcode
 import PIL
 import customtkinter
 import Constants as CONSTANT
-from Tools.QRTools import generate_ID_card
+from Tools.QRTools import generate_ID_card, resource_path
 from tkinter import ttk, Frame, Label, END, Button
 from Tools.JSONTools import read_json, write_json
 
@@ -51,12 +51,16 @@ class AddMembersTab(customtkinter.CTkFrame):
         student_id_entry.pack()
         student_id_entry.focus()
 
-        submit_button = customtkinter.CTkButton(
-            self.ctr_left, text='Submit', command=self.submit_user, width=100)
+        submit_button = customtkinter.CTkButton(self.ctr_left,
+                                                text='Submit',
+                                                command=self.submit_user,
+                                                width=100,
+                                                fg_color="#eb7100",
+                                                hover_color="#b85900")
         submit_button.pack(pady=20, padx=0)
 
-        qr_placeholder = PIL.Image.new(mode="RGB", size=(250, 250),
-                                       color=(255, 255, 255))
+        qr_placeholder = PIL.Image.open(
+            resource_path("assets/placeholder.png"))
         qr_code = customtkinter.CTkImage(light_image=qr_placeholder,
                                          dark_image=qr_placeholder,
                                          size=(250, 250))

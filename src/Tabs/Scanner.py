@@ -19,9 +19,12 @@ class ScannerTab(customtkinter.CTkFrame):
         self.generate_UI_components()
 
     def generate_UI_components(self):
-        start_camera_button = customtkinter.CTkButton(
-            self.center, text='Start QR Scanner', command=self.start_camera_thread)
-        start_camera_button.place(relx=.5, rely=.2, anchor=CENTER)
+        start_camera_button = customtkinter.CTkButton(self.center,
+                                                      text='Start QR Scanner',
+                                                      command=self.start_camera_thread,
+                                                      fg_color="#eb7100",
+                                                      hover_color="#b85900")
+        start_camera_button.place(relx=.5, rely=.5, anchor=CENTER)
 
     def start_camera_thread(self):
         camera = Camera()

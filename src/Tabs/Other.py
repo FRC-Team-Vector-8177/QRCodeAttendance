@@ -22,21 +22,40 @@ class OtherTab(customtkinter.CTkFrame):
 
     def generate_UI_components(self):
         # Export Buttons
-        export_csv_button = customtkinter.CTkButton(
-            self.center, text='Export CSV', command=self.export_csv)
+        export_csv_button = customtkinter.CTkButton(self.center,
+                                                    text='Export CSV',
+                                                    command=self.export_csv,
+                                                    fg_color="#eb7100",
+                                                    hover_color="#b85900")
         export_csv_button.place(relx=.2, rely=.4, anchor=CENTER)
 
-        export_json_button = customtkinter.CTkButton(
-            self.center, text='Export JSON', command=self.export_json)
+        export_json_button = customtkinter.CTkButton(self.center,
+                                                     text='Export JSON',
+                                                     command=self.export_json,
+                                                     fg_color="#db7100",
+                                                     hover_color="#b85900")
         export_json_button.place(relx=.2, rely=.6, anchor=CENTER)
 
-        import_json_button = customtkinter.CTkButton(
-            self.center, text='Import JSON', command=self.import_json)
+        import_json_button = customtkinter.CTkButton(self.center,
+                                                     text='Import JSON',
+                                                     command=self.import_json,
+                                                     fg_color="#db7100",
+                                                     hover_color="#b85900")
         import_json_button.place(relx=.8, rely=.4, anchor=CENTER)
 
-        reset_json_button = customtkinter.CTkButton(
-            self.center, text='Reset JSON', command=self.reset_json)
+        reset_json_button = customtkinter.CTkButton(self.center,
+                                                    text='Reset JSON',
+                                                    command=self.reset_json,
+                                                    fg_color="#db7100",
+                                                    hover_color="#b85900")
         reset_json_button.place(relx=.8, rely=.6, anchor=CENTER)
+
+        open_id_folder = customtkinter.CTkButton(self.center,
+                                                 text='Open ID Badges',
+                                                 command=self.open_folder,
+                                                 fg_color="#db7100",
+                                                 hover_color="#b85900")
+        open_id_folder.place(relx=.5, rely=.2, anchor=CENTER)
 
         self.status_label = customtkinter.CTkLabel(self.center, text="")
         self.status_label.place(relx=.5, rely=.75, anchor=CENTER)
@@ -79,11 +98,11 @@ class OtherTab(customtkinter.CTkFrame):
                 write_json(newjson)
                 for member in newjson["members"]:
                     generate_ID_card(member["Name"], member["ID"])
-                self.status_label.config(
+                self.status_label.configure(
                     text="Imported JSON file!")
 
     def open_folder(self):
-        if(os.path.exists("./IDcard")):
+        if (os.path.exists("./IDcard")):
             webbrowser.open(os.path.abspath("./IDcard"))
         else:
             self.status_label.config(

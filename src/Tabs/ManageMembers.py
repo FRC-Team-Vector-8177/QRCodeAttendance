@@ -5,6 +5,7 @@ import customtkinter
 import Constants as CONSTANT
 from tkinter import ttk, Frame, Listbox, END, ANCHOR, Button, StringVar, Entry
 from Tools.JSONTools import read_json, write_json
+from Tools.QRTools import resource_path
 
 
 class ManageMembersTab(customtkinter.CTkFrame):
@@ -45,8 +46,8 @@ class ManageMembersTab(customtkinter.CTkFrame):
         self.reload_member_list()
         self.tabcontrol.configure(command=self.reload_member_list)
 
-        qr_placeholder = PIL.Image.new(mode="RGB", size=(250, 250),
-                                       color=(255, 255, 255))
+        qr_placeholder = PIL.Image.open(
+            resource_path("assets/placeholder.png"))
         qr_code = customtkinter.CTkImage(light_image=qr_placeholder,
                                          dark_image=qr_placeholder,
                                          size=(250, 250))
@@ -62,8 +63,12 @@ class ManageMembersTab(customtkinter.CTkFrame):
         self.info_display.insert(tk.END, "ID:\nDays Attended:")
         self.info_display.configure(state='disable')
 
-        delete_button = customtkinter.CTkButton(
-            self.ctr_left, text='Delete', command=self.remove_user, width=100)
+        delete_button = customtkinter.CTkButton(self.ctr_left,
+                                                text='Delete',
+                                                command=self.remove_user,
+                                                width=100,
+                                                fg_color="#eb7100",
+                                                hover_color="#b85900")
         delete_button.pack()
 
     def select_user(self, event=None):
