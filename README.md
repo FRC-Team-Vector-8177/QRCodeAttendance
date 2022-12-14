@@ -7,13 +7,14 @@ https://github.com/FRC-Team-Vector-8177/QRCodeAttendance/releases/
 
 # Use
 After installing there will be 3 different tabs.<br />
-Manage Members is used to look up member's information<br />
-Add Members is used to add new members<br />
-Other is used to start up the camera scanner and used to export a csv file.
+`Manage Members` is used to look up member's information<br />
+`Add Members` is used to add new members<br />
+`Scanner` is to start the live webcam QR code scanner<br />
+`Other` is used for miscellaneous actions like exporting data into CSV and JSON. It's also used for importing data.<br />
 
 When the camera is shown the user's QR code it automatically logs them for that day.
 
-Everything is saved in a data.json file found in your app data folder.
+Everything is saved in a data.json file that can be exported in the `Other` tab
 
 # Compiling
 First enter your src directory by using the command:<br />
